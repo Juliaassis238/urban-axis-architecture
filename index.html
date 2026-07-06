@@ -14,6 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet" />
 
   <style>
+  img { opacity: 0; transition: opacity 0.5s ease-in; }
+  img.loaded { opacity: 1; }
+
     :root {
       --sand: #f0ebe3;
       --sand-dark: #d4c8b8;
@@ -447,7 +450,7 @@
       </div>
     </div>
     <div class="hero-right">
-      <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&q=90" alt="Urban Axis Architecture" id="heroImg" />
+      <img decoding="async" fetchpriority="high" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&q=90" alt="Urban Axis Architecture" id="heroImg" />
       <div class="hero-counter">
         <div class="hero-counter-item">
           <strong>120+</strong>
@@ -495,8 +498,8 @@
         </div>
       </div>
       <div class="intro-visual reveal reveal-delay-2">
-        <img class="intro-img-a" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800&q=85" alt="Projeto Urban Axis" />
-        <img class="intro-img-b" src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=85" alt="Detalhe de projeto" />
+        <img decoding="async" fetchpriority="high" class="intro-img-a" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800&q=85" alt="Projeto Urban Axis" />
+        <img decoding="async" loading="lazy" class="intro-img-b" src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=85" alt="Detalhe de projeto" />
       </div>
     </div>
   </section>
@@ -512,7 +515,7 @@
     </div>
     <div class="masonry-grid">
       <div class="project-item reveal">
-        <img class="project-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=85" alt="Projeto Residencial" />
+        <img decoding="async" loading="lazy" class="project-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=85" alt="Projeto Residencial" />
         <div class="project-overlay">
           <div class="project-type">Residencial</div>
           <div class="project-name">Casa Horizonte</div>
@@ -520,7 +523,7 @@
         </div>
       </div>
       <div class="project-item reveal reveal-delay-1">
-        <img class="project-img" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=85" alt="Projeto Corporativo" />
+        <img decoding="async" loading="lazy" class="project-img" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=85" alt="Projeto Corporativo" />
         <div class="project-overlay">
           <div class="project-type">Corporativo</div>
           <div class="project-name">Nexus HQ</div>
@@ -528,7 +531,7 @@
         </div>
       </div>
       <div class="project-item reveal reveal-delay-2">
-        <img class="project-img" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=85" alt="Projeto Interiores" />
+        <img decoding="async" loading="lazy" class="project-img" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=85" alt="Projeto Interiores" />
         <div class="project-overlay">
           <div class="project-type">Interiores</div>
           <div class="project-name">Apartamento Minimal</div>
@@ -536,7 +539,7 @@
         </div>
       </div>
       <div class="project-item reveal reveal-delay-1">
-        <img class="project-img" src="https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=600&q=85" alt="Projeto Comercial" />
+        <img decoding="async" loading="lazy" class="project-img" src="https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=600&q=85" alt="Projeto Comercial" />
         <div class="project-overlay">
           <div class="project-type">Comercial</div>
           <div class="project-name">Boutique Aura</div>
@@ -544,7 +547,7 @@
         </div>
       </div>
       <div class="project-item reveal reveal-delay-2">
-        <img class="project-img" src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=85" alt="Projeto Urbano" />
+        <img decoding="async" loading="lazy" class="project-img" src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=85" alt="Projeto Urbano" />
         <div class="project-overlay">
           <div class="project-type">Urbano</div>
           <div class="project-name">Praça Eixo</div>
@@ -674,5 +677,18 @@
 
     setTimeout(() => document.getElementById('heroImg')?.classList.add('loaded'), 200);
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+});
+</script>
 </body>
 </html>
