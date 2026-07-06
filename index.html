@@ -26,6 +26,9 @@
   img { opacity: 0; transition: opacity 0.5s ease-in; }
   img.loaded { opacity: 1; }
 
+  img { opacity: 0; transition: opacity 0.5s ease-in; }
+  img.loaded { opacity: 1; }
+
     :root {
       --sand: #f0ebe3;
       --sand-dark: #d4c8b8;
@@ -686,6 +689,19 @@
 
     setTimeout(() => document.getElementById('heroImg')?.classList.add('loaded'), 200);
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+});
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
